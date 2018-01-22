@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <EditText
         android:id="@+id/firstNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/firstNumber"
-        android:textSize="25sp"/>
-
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:inputType="numberDecimal"/>
     <EditText
         android:id="@+id/secondNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/secondNumber"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:inputType="numberDecimal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +75,7 @@
         android:id="@+id/txtResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/txtResult"
         android:textSize="25sp"
         android:textAlignment="center"/>

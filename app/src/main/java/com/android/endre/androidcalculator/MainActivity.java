@@ -1,8 +1,10 @@
 package com.android.endre.androidcalculator;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,8 +23,15 @@ public class MainActivity extends AppCompatActivity{
         initWidgets();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
     private void initWidgets(){
         model = new Model();
@@ -30,7 +39,6 @@ public class MainActivity extends AppCompatActivity{
         model.setBtnSubtraction((Button) findViewById(R.id.btnSubtraction));
         model.setBtnMultiplication((Button) findViewById(R.id.btnMultiplication));
         model.setBtnDivision((Button) findViewById(R.id.btnDivision));
-        model.setBtnEquals((Button) findViewById(R.id.btnEquals));
         model.setBtnClear((Button) findViewById(R.id.btnClear));
         model.setFirstNumber((EditText) findViewById(R.id.firstNumber));
         model.setSecondNumber((EditText) findViewById(R.id.secondNumber));
@@ -40,16 +48,23 @@ public class MainActivity extends AppCompatActivity{
         model.getBtnSubtraction().setOnClickListener(this::doMathOperation);
         model.getBtnMultiplication().setOnClickListener(this::doMathOperation);
         model.getBtnDivision().setOnClickListener(this::doMathOperation);
+        model.getBtnClear().setOnClickListener(this::doMathOperation);
     }
+
 
     private boolean isBothNumbersPresent(){
-        return !"".equals(model.getFirstNumber().getText().toString()) && !"".equals(model.getSecondNumber().getText().toString());
+        return !"".equals(model.getFirstNumber().getText().toString()) &&
+                !"".equals(model.getSecondNumber().getText().toString());
     }
 
-    private boolean readInput(){
+
+    private boolean readUserInputFromFields(){
         String firstNum = model.getFirstNumber().getText().toString();
         String secondNum = model.getSecondNumber().getText().toString();
-        if (canNumberBeParsed(firstNum) && canNumberBeParsed(secondNum)){
+
+        if (InputController.canNumberBeParsed(firstNum) &&
+                InputController.canNumberBeParsed(secondNum)){
+
             firstInput = Double.parseDouble(firstNum);
             secondInput = Double.parseDouble(secondNum);
             return true;
@@ -57,12 +72,17 @@ public class MainActivity extends AppCompatActivity{
         return false;
     }
 
-    private void doMathOperation(View view){
-        if (isBothNumbersPresent()){
-            if (readInput()) {
-                System.out.println(firstInput);
-                System.out.println(secondInput);
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
+    private void doMathOperation(View view){
+        hideKeyboard(view);
+        if (isBothNumbersPresent()){
+            if (readUserInputFromFields()) {
                 switch (view.getId()) {
                     case R.id.btnAddition : model.getTxtResult().setText(String.valueOf(firstInput + secondInput));
                         break;
@@ -77,21 +97,15 @@ public class MainActivity extends AppCompatActivity{
                             model.getTxtResult().setText(R.string.cannotDivide);
                         }
                         break;
+                    case R.id.btnClear : model.getTxtResult().setText(R.string.txtResult);
+                                        model.getFirstNumber().setText(R.string.emptySting);
+                                        model.getSecondNumber().setText(R.string.emptySting);
+                        break;
                 }
             }else
                 model.getTxtResult().setText(R.string.invalidNumber);
 
         } else
             model.getTxtResult().setText(R.string.numberMissing);
-    }
-
-
-    private boolean canNumberBeParsed(String input){
-        try {
-            Double.parseDouble(input);
-            return true;
-        }catch (NumberFormatException e){
-            return false;
-        }
     }
 }

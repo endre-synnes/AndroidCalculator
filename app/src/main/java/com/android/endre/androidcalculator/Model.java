@@ -16,7 +16,6 @@ public class Model extends Observable{
             btnSubtraction,
             btnMultiplication,
             btnDivision,
-            btnEquals,
             btnClear;
 
     private EditText firstNumber, secondNumber;
@@ -55,14 +54,6 @@ public class Model extends Observable{
 
     public void setBtnDivision(Button btnDivision) {
         this.btnDivision = btnDivision;
-    }
-
-    public Button getBtnEquals() {
-        return btnEquals;
-    }
-
-    public void setBtnEquals(Button btnEquals) {
-        this.btnEquals = btnEquals;
     }
 
     public EditText getFirstNumber() {

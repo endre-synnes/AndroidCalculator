@@ -1,15 +1,13 @@
 <resources>
     <string name="app_name">AndroidCalculator</string>
-    <string name="firstNumber"></string>
-    <string name="secondNumber"></string>
     <string name="txtResult">Result…</string>
     <string name="btnAddition">+</string>
     <string name="btnSubtraction">-</string>
     <string name="btnMultiplication">*</string>
     <string name="btnDivision">/</string>
-    <string name="btnEquals">=</string>
     <string name="btnClear">C</string>
     <string name="numberMissing">Enter both values!</string>
     <string name="invalidNumber">Enter a valid number</string>
     <string name="cannotDivide">Can`t divide</string>
+    <string name="emptySting"></string>
 </resources>
