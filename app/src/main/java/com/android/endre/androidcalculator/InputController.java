@@ -16,4 +16,9 @@ class InputController {
         }
     }
 
+    public static boolean isBothNumbersPresent(Model model){
+        return !"".equals(model.getFirstNumber().getText().toString()) &&
+                !"".equals(model.getSecondNumber().getText().toString());
+    }
+
 }

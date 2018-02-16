@@ -52,12 +52,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    private boolean isBothNumbersPresent(){
-        return !"".equals(model.getFirstNumber().getText().toString()) &&
-                !"".equals(model.getSecondNumber().getText().toString());
-    }
-
-
     private boolean readUserInputFromFields(){
         String firstNum = model.getFirstNumber().getText().toString();
         String secondNum = model.getSecondNumber().getText().toString();
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void doMathOperation(View view){
         hideKeyboard(view);
-        if (isBothNumbersPresent()){
+        if (InputController.isBothNumbersPresent(model)){
             if (readUserInputFromFields()) {
                 switch (view.getId()) {
                     case R.id.btnAddition : model.getTxtResult().setText(String.valueOf(firstInput + secondInput));
