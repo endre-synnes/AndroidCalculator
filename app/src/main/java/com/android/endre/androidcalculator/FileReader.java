@@ -5,7 +5,9 @@ package com.android.endre.androidcalculator;
  * Project name: Calculator.
  */
 
-public class ModelService {
+public class FileReader {
 
-
+    public static String read(String filename){
+        return "some value";
+    }
 }

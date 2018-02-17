@@ -16,12 +16,30 @@ public class Model extends Observable{
             btnSubtraction,
             btnMultiplication,
             btnDivision,
-            btnClear;
+            btnClear,
+            btnSave,
+            btnLoad;
 
     private EditText firstNumber, secondNumber;
     private TextView txtResult;
 
     public Model() {
+    }
+
+    public Button getBtnSave() {
+        return btnSave;
+    }
+
+    public void setBtnSave(Button btnSave) {
+        this.btnSave = btnSave;
+    }
+
+    public Button getBtnLoad() {
+        return btnLoad;
+    }
+
+    public void setBtnLoad(Button btnLoad) {
+        this.btnLoad = btnLoad;
     }
 
     public Button getBtnAddition() {

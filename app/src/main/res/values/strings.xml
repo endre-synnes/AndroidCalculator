@@ -10,4 +10,6 @@
     <string name="invalidNumber">Enter a valid number</string>
     <string name="cannotDivide">Can`t divide</string>
     <string name="emptySting"></string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
 </resources>
